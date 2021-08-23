@@ -8,8 +8,7 @@ const initialiseData = require("./initial-data");
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const PROJECT_NAME = "timesheet";
 const adapterConfig = {
-  mongoUri:
-    "mongodb+srv://timesheet:pKjNEUH*_w4692z@timecluster.l7yg2.mongodb.net/TimeCluster?retryWrites=true&w=majority",
+  mongoUri: process.env.MONGO_URI,
 };
 
 const keystone = new Keystone({
