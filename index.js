@@ -8,7 +8,8 @@ const initialiseData = require("./initial-data");
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const PROJECT_NAME = "timesheet";
 const adapterConfig = {
-  mongoUri: process.env.MONGO_URI,
+  mongoUri:
+    "mongodb+srv://timesheet:pKjNEUH*_w4692z@timecluster.l7yg2.mongodb.net/TimeCluster?retryWrites=true&w=majority",
 };
 
 const keystone = new Keystone({
@@ -57,12 +58,19 @@ keystone.createList("User", {
     },
   },
   // List-level access controls
-  access: {
-    read: access.userIsAdminOrOwner,
-    update: access.userIsAdminOrOwner,
-    create: access.userIsAdmin,
-    delete: access.userIsAdmin,
-    auth: true,
+  // access: {
+  //   read: access.userIsAdminOrOwner,
+  //   update: access.userIsAdminOrOwner,
+  //   create: access.userIsAdmin,
+  //   delete: access.userIsAdmin,
+  //   auth: true,
+  // },
+});
+
+keystone.createList("Job", {
+  fields: {
+    name: { type: Text },
+    active: { type: Checkbox },
   },
 });
 
